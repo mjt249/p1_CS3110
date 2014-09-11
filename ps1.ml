@@ -1,8 +1,10 @@
 
 (*Exercise 1*)
 (*is_mon_inc determines whether an int list increases monotonically
-*il is the int list to be tested
-*
+*il is the int list to be tested. 
+*Precondition: il must be an int list.
+*Postcondition: will return a bool corresponding to whether the 
+*input list is monotonic. If il is [], then true
 *)
 let rec is_mon_inc(il : int list) : bool =
     match (il) with
@@ -15,9 +17,13 @@ let rec is_mon_inc(il : int list) : bool =
 (*Exercise 2*)
 (*is_unimodal determines whether an int list does not increase
 *after it starts decreasing. il2 is the int list to be tested
+*Precondition: il must be an int list
+*Postcondition: will return a bool corresponding to whether
+*the input list is unimodal as described. So il []  and [int] will
+*return true
 *)
-let rec is_unimodal(il2 : int list) : bool = 
-    match (il2) with
+let rec is_unimodal(il : int list) : bool = 
+    match (il) with
      [] -> true
     | (hd::[])-> true
     | (hd::nx::[]) -> true
@@ -28,6 +34,9 @@ let rec is_unimodal(il2 : int list) : bool =
 (*Exercise 3*)
 (*powerset takes a set and returns a set of all the possible 
 *permutations of the input set. set is the input set
+*Precondition: set is a list of any type
+*Postcondition: will return the powerset of set. Set []
+*will return [[]].
 *)
 let powerset (set: 'a list) :'a list list =
     let rec adder (staticset: 'a list list) (currentlt: 'a list list) 
@@ -50,6 +59,10 @@ let powerset (set: 'a list) :'a list list =
 (*Exercise 4*)
 (*rev_int takes an integer and returns an integer with the input int's
 *digits reversed. number is the integer to be reversed
+*Precondition: number is an int that will not go to or beyond
+* the Max or Min int once reversed. Otherwise undefined
+*Postcondition: will return an int with the reversed digits of the 
+*input. 001 --> 1 and -30 --> 3
 *)
 let rev_int (number: int) : int =
     let rec reverse ((num : int),(place : float),(lst: int list)) : int list =
@@ -75,9 +88,12 @@ let rev_int (number: int) : int =
 
 (*Exercise 5*)
 (*unflatten takes a list and returns a list of the input list divided
-*into smaller lists with length k. If the list length is not divisible 
-*by k, then the last smaller list may have a length less than k. lst is
-*the input list to be divided
+*into smaller lists with length k. lst is the input list to be divided
+*Precondition: k must be an int > 0 or function will return None.
+*lst must be an 'a list
+*Postcondition: will return an 'a list list option of the input list
+*broken into smaller lists of length k. If the list length is not divisible 
+*by k, then the last smaller list may have a length less than k. 
 *)
 let unflatten (k:int) (lst: 'a list) : 'a list list option =
 	(*bg is an int for the first value in the cut off list. ed is an int for
